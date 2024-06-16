@@ -48,7 +48,7 @@ class MesNet(torch.nn.Module):
                        torch.nn.ReplicationPad1d(4),
                        torch.nn.ReLU(),
                        torch.nn.Dropout(p=0.5),
-                       torch.nn.Conv1d(32, 64, 5, dilation=3),
+                       torch.nn.Conv1d(32, 32, 5, dilation=3),
                        torch.nn.ReplicationPad1d(4),
                        torch.nn.ReLU(),
                        torch.nn.Dropout(p=0.5),
