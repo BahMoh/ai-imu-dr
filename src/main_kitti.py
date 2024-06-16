@@ -460,9 +460,9 @@ class KITTIArgs():
         current_dir = os.getcwd()
         parent_dir = os.path.dirname(current_dir)
 
-        path_data_save = os.path.join(parent_dir, "/data")
-        path_results = os.path.join(parent_dir, "/results")
-        path_temp = os.path.join(parent_dir, "/temp")
+        path_data_save = "/content/ai-imu-dr/data"
+        path_results = "/content/ai-imu-dr/results"
+        path_temp = "/content/ai-imu-dr/temp"
 
         epochs = 400
         seq_dim = 6000
@@ -474,7 +474,7 @@ class KITTIArgs():
 
         # choose what to do
         read_data = 0
-        train_filter = 0
+        train_filter = 1
         test_filter = 1
         results_filter = 1
         dataset_class = KITTIDataset
