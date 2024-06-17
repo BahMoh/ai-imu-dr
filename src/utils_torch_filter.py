@@ -243,6 +243,7 @@ class TORCHIEKF(torch.nn.Module, NUMPYIEKF):
         print(f"H {H.shape}")
         print(f"P {P.shape}")
         print(f"r {r.shape}")
+        print(f"R {R.shape}")
 
         Kt = torch.torch.linalg.solve(P.mm(H.t()).t(), S)
         K = Kt.t()
