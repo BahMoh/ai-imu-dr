@@ -237,13 +237,13 @@ class TORCHIEKF(torch.nn.Module, NUMPYIEKF):
     def state_and_cov_update(Rot, v, p, b_omega, b_acc, Rot_c_i, t_c_i, P, H, r, R):
         S = H.mm(P).mm(H.t()) + R
         
-        print(f"S.shape {S.shape}")                       # S.shape torch.Size([2, 2])
-        print(f"P.mm(H.t()).t() {P.mm(H.t()).t().shape}") # P.mm(H.t()).t() torch.Size([2, 21])
-        print(f"P.mm(H.t()) {P.mm(H.t()).shape}")         # P.mm(H.t()) torch.Size([21, 2])
-        print(f"H {H.shape}")                             # H torch.Size([2, 21])
-        print(f"P {P.shape}")                             # P torch.Size([21, 21])
-        print(f"r {r.shape}")                             # r torch.Size([2])
-        print(f"R {R.shape}")                             # R torch.Size([2, 2])
+        # print(f"S.shape {S.shape}")                       # S.shape torch.Size([2, 2])
+        # print(f"P.mm(H.t()).t() {P.mm(H.t()).t().shape}") # P.mm(H.t()).t() torch.Size([2, 21])
+        # print(f"P.mm(H.t()) {P.mm(H.t()).shape}")         # P.mm(H.t()) torch.Size([21, 2])
+        # print(f"H {H.shape}")                             # H torch.Size([2, 21])
+        # print(f"P {P.shape}")                             # P torch.Size([21, 21])
+        # print(f"r {r.shape}")                             # r torch.Size([2])
+        # print(f"R {R.shape}")                             # R torch.Size([2, 2])
 
         Kt = torch.torch.linalg.solve(S, P.mm(H.t()).t())
         # Kt = torch.linalg.solve(S, H.mm(P).t()).t()
