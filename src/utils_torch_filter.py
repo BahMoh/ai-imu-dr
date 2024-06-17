@@ -236,7 +236,12 @@ class TORCHIEKF(torch.nn.Module, NUMPYIEKF):
     @staticmethod
     def state_and_cov_update(Rot, v, p, b_omega, b_acc, Rot_c_i, t_c_i, P, H, r, R):
         S = H.mm(P).mm(H.t()) + R
-        Kt, _ = torch.torch.linalg.solve(P.mm(H.t()).t(), S)
+        
+        print(S.shape)
+        print(f"P.mm(H.t()).t() {P.mm(H.t()).t().shape}")
+        print(f"P.mm(H.t()) {P.mm(H.t()).shape}")
+
+        Kt = torch.torch.linalg.solve(P.mm(H.t()).t(), S)
         K = Kt.t()
         dx = K.mv(r.view(-1))
 
