@@ -237,15 +237,16 @@ class TORCHIEKF(torch.nn.Module, NUMPYIEKF):
     def state_and_cov_update(Rot, v, p, b_omega, b_acc, Rot_c_i, t_c_i, P, H, r, R):
         S = H.mm(P).mm(H.t()) + R
         
-        print(f"S.shape {S.shape}")
-        print(f"P.mm(H.t()).t() {P.mm(H.t()).t().shape}")
-        print(f"P.mm(H.t()) {P.mm(H.t()).shape}")
-        print(f"H {H.shape}")
-        print(f"P {P.shape}")
-        print(f"r {r.shape}")
-        print(f"R {R.shape}")
+        print(f"S.shape {S.shape}")                         # S.shape torch.Size([2, 2])
+        print(f"P.mm(H.t()).t() {P.mm(H.t()).t().shape}")   # P.mm(H.t()).t() torch.Size([2, 21])
+        print(f"P.mm(H.t()) {P.mm(H.t()).shape}")           # P.mm(H.t()) torch.Size([21, 2])
+        print(f"H {H.shape}")                               # H torch.Size([2, 21])
+        print(f"P {P.shape}")                               # P torch.Size([21, 21])
+        print(f"r {r.shape}")                               # r torch.Size([2])
+        print(f"R {R.shape}")                               # R torch.Size([2, 2])
 
-        Kt = torch.torch.linalg.solve(P.mm(H.t()).t(), S)
+        # Kt = torch.torch.linalg.solve(P.mm(H.t()).t(), S)
+        Kt = torch.linalg.solve(S, H.mm(P).t()).t()
         K = Kt.t()
         dx = K.mv(r.view(-1))
 
@@ -255,6 +256,7 @@ class TORCHIEKF(torch.nn.Module, NUMPYIEKF):
         Rot_up = dR.mm(Rot)
         v_up = dR.mv(v) + dv
         p_up = dR.mv(p) + dp
+
 
         b_omega_up = b_omega + dx[9:12]
         b_acc_up = b_acc + dx[12:15]
