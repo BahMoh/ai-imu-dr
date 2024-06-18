@@ -69,6 +69,7 @@ class MesNet(torch.nn.Module):
             print(f"z_cov {z_cov.shape}")
             print(f"z_cov_net {z_cov_net.shape}")
             print(f"measurements_covs {measurements_covs.shape}")
+            input("Enter Sth")
             return measurements_covs
 
 
