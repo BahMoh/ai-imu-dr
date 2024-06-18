@@ -65,14 +65,14 @@ class MesNet(torch.nn.Module):
             z_cov = self.cov_lin(y_cov)
             z_cov_net = self.beta_measurement.unsqueeze(0)*z_cov
             measurements_covs = (iekf.cov0_measurement.unsqueeze(0) * (10**z_cov_net))
-            print(f"u {u.shape}")
-            print(f"y_cov {y_cov.shape}")
-            print(f"self.cov_net(u) {self.cov_net(u).shape}")
-            print(f"self.beta_measurement {self.beta_measurement}")
-            print(f"z_cov {z_cov.shape}")
-            print(f"z_cov_net {z_cov_net.shape}")
-            print(f"measurements_covs {measurements_covs.shape}")
-            input("Enter Sth")
+            print(f"u {u.shape}")                                    # u torch.Size([1, 6, 6000])
+            print(f"y_cov {y_cov.shape}")                            # y_cov torch.Size([6000, 32])
+            print(f"self.cov_net(u) {self.cov_net(u).shape}")        # self.cov_net(u) torch.Size([1, 32, 6000])
+            print(f"self.beta_measurement {self.beta_measurement}")  # self.beta_measurement tensor([3., 3.], dtype=torch.float64)
+            print(f"z_cov {z_cov.shape}")                            # z_cov torch.Size([6000, 2])
+            print(f"z_cov_net {z_cov_net.shape}")                    # z_cov_net torch.Size([6000, 2])
+            print(f"measurements_covs {measurements_covs.shape}")    # measurements_covs torch.Size([6000, 2])
+            input("Enter Sth")                                       # Enter Sth
             return measurements_covs
 
 
