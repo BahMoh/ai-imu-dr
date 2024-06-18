@@ -66,7 +66,7 @@ class MesNet(torch.nn.Module):
             z_cov_net = self.beta_measurement.unsqueeze(0)*z_cov
             measurements_covs = (iekf.cov0_measurement.unsqueeze(0) * (10**z_cov_net))
             print(f"y_cov {y_cov.shape}")
-            print(f"self.cov_net(u) {self.cov_net(u)}")
+            print(f"self.cov_net(u) {self.cov_net(u).shape}")
 
             print(f"z_cov {z_cov.shape}")
             print(f"z_cov_net {z_cov_net.shape}")
