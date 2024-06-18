@@ -61,11 +61,13 @@ class MesNet(torch.nn.Module):
             self.cov_lin[0].weight.data[:] /= 100
 
         def forward(self, u, iekf):
-            y_cov = self.cov_net(u).transpose(0, 2).squeeze()
+            y_cov = self.cov_net(u).transpose(0, 2).squeeze() 
             z_cov = self.cov_lin(y_cov)
             z_cov_net = self.beta_measurement.unsqueeze(0)*z_cov
             measurements_covs = (iekf.cov0_measurement.unsqueeze(0) * (10**z_cov_net))
             print(f"y_cov {y_cov.shape}")
+            print(f"self.cov_net(u) {self.cov_net(u)}")
+
             print(f"z_cov {z_cov.shape}")
             print(f"z_cov_net {z_cov_net.shape}")
             print(f"measurements_covs {measurements_covs.shape}")
