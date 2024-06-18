@@ -68,7 +68,7 @@ class MesNet(torch.nn.Module):
             print(f"u {u.shape}")
             print(f"y_cov {y_cov.shape}")
             print(f"self.cov_net(u) {self.cov_net(u).shape}")
-
+            print(f"self.beta_measurement {self.beta_measurement}")
             print(f"z_cov {z_cov.shape}")
             print(f"z_cov_net {z_cov_net.shape}")
             print(f"measurements_covs {measurements_covs.shape}")
